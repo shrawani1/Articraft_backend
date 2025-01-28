@@ -316,6 +316,9 @@ const paginationProducts = async (req, res) => {
     }
   };
 
+  // Fetch New Arrivals
+
+
 
 module.exports = {
     CreateProduct,
@@ -324,5 +327,6 @@ module.exports = {
     deleteProduct,
     updateProudct,
     paginationProducts,
-    getProductCount
+    getProductCount,
+    
 };

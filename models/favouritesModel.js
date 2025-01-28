@@ -1,4 +1,4 @@
-// models/favouritesModel.js
+
 
 const mongoose = require("mongoose");
 
