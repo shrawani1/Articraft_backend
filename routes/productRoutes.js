@@ -1,6 +1,8 @@
 const router =require('express').Router();
 const productController =require('../controllers/productControllers');
 const { authGuard, } = require('../middleware/authGuard');
+const { getCategories } = require('../controllers/productControllers');
+
 
 router.post('/create', productController.CreateProduct)
 
@@ -22,6 +24,8 @@ router.get('/pagination',productController.paginationProducts);
 
 //get product count
 router.get('/get_product_count',productController.getProductCount)
+
+router.get('/categories', getCategories);
 
 
 
