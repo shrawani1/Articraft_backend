@@ -10,10 +10,11 @@ const CreateProduct = async (req, res) => {
     const { productName,
         productPrice,
         productCategory,
-        productDescription
+        productDescription,
+        productStory
     } = req.body;
     //validation (task)
-    if (!productName || !productPrice || !productCategory || !productDescription) {
+    if (!productName || !productPrice || !productCategory || !productDescription || !productStory) {
         return res.status(400).json({
             "success": false,
             "message": "enter all fields"
@@ -41,6 +42,7 @@ const CreateProduct = async (req, res) => {
         productPrice: productPrice,
         productCategory: productCategory,
         productDescription: productDescription,
+        productStory: productStory,
         productImage: imageName
     })
     const product = await newProduct.save()
@@ -117,23 +119,32 @@ const getSingleProduct = async (req, res) => {
 
 
 }
-const getCategories = async (req, res) => {
+
+const getProductsByCategory = async (req, res) => {
+    const { category } = req.params;  
     try {
-        const categories = await productModel.distinct("productCategory");
-        res.status(200).json({
-            success: true,
-            message: "Categories fetched successfully",
-            categories
-        });
+        const products = await productModel.find({ productCategory: category });
+        if (products.length) {
+            res.status(200).json({
+                success: true,
+                message: "Products fetched successfully",
+                products: products
+            });
+        } else {
+            res.status(404).json({
+                success: false,
+                message: "No products found in this category"
+            });
+        }
     } catch (error) {
-        console.error(error);
+        console.error("Error fetching products by category:", error);
         res.status(500).json({
             success: false,
             message: "Internal server error",
             error: error
         });
     }
-}
+};
 
 //delete product
 const deleteProduct = async (req, res) => {
@@ -292,6 +303,7 @@ module.exports = {
     updateProudct,
     paginationProducts,
     getProductCount,
-    getCategories
+    getProductsByCategory
+    
     
 };

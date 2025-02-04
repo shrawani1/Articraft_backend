@@ -18,7 +18,7 @@ router.post ('/verify_otp', userController.verifyOtpAndSetPassword)
 router.get('/profile', userController.getUserProfile);
 router.put('/profile', userController.updateUserProfile);
  
-// Controller(Export)-> Routes (import)-> use ->(index.js)
+
 
 //get user data 
 router.get('/user/:id',userController.getUserDetails);
@@ -27,5 +27,6 @@ router.get('/user/:id',userController.getUserDetails);
 router.get("/token",userController.getToken);
 
 router.get("/profile/get", userController.getCurrentProfile);
+
 //Exporting the routes
 module.exports = router;

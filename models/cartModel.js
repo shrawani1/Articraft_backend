@@ -1,4 +1,3 @@
-// models/cartModel.js
 
 const mongoose = require("mongoose");
 

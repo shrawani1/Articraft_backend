@@ -9,14 +9,20 @@ const productSchema = new mongoose.Schema({
         required : true
     },
     productCategory: {
-        type : String,
-        required : true,
-        
+        type: String,
+        required: true,
+        enum: ['Accessories', 'Gifts', 'Bags', 'Jewellery', 'Arts', 'Home and Living'],  
+        index: true  
     },
     productDescription : {
         type : String,
         required : true,
-        maxLength: 1000
+        maxLength: 10000
+    },
+    productStory : {
+        type : String,
+        required : true,
+        maxLength: 10000
     },
     productImage: {
         type: String,

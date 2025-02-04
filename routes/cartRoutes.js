@@ -1,13 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const { addToCart, getCart } = require('../controllers/cartControllers');
-// const { authGuard } = require('../middleware/authGuard');
-
-// router.post('/add_to_cart', addToCart);
-// router.get('/get_cart', getCart);
-
-// module.exports = router;
-// routes/cartRoutes.js
 
 const express = require("express");
 const router = express.Router();

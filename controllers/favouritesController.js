@@ -1,4 +1,4 @@
-// controllers/favouritesController.js
+
 
 const Favourite = require("../models/favouritesModel");
 

@@ -1,14 +1,4 @@
-// const express = require('express');
-// const { createOrder, getOrdersByUser, getAllOrders } = require('../controllers/orderController');
 
-
-// const router = express.Router();
-
-// router.post('/orders', createOrder);
-// router.get('/orders/user', getOrdersByUser);
-// router.get('/orders', getAllOrders);
-
-// module.exports = router;
 const router = require("express").Router();
 
 const orderController = require("../controllers/orderController");

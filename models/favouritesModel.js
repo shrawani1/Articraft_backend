@@ -1,5 +1,4 @@
 
-
 const mongoose = require("mongoose");
 
 const favouriteSchema = new mongoose.Schema({
