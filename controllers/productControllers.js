@@ -98,13 +98,7 @@ const getSingleProduct = async (req, res) => {
     try {
         const product = await productModel.findById(req.params.id)
         console.log(product)
-        // if(!product){
-        //     res.status(400).json({
-        //         "success": false,
-        //         "message" : "no server found"
-        //     })
-
-        // }
+       
         res.status(201).json({
             "success": true,
             "message": "product fethched successfully",
@@ -122,6 +116,23 @@ const getSingleProduct = async (req, res) => {
     }
 
 
+}
+const getCategories = async (req, res) => {
+    try {
+        const categories = await productModel.distinct("productCategory");
+        res.status(200).json({
+            success: true,
+            message: "Categories fetched successfully",
+            categories
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error
+        });
+    }
 }
 
 //delete product
@@ -143,15 +154,7 @@ const deleteProduct = async (req, res) => {
 
 }
 
-// update product
-//1. get product id (URL)
-//2. if image :
-//3. new image should be uploaded
-//4. old image should be deleted
-//5. find product (database) productImage
-//6. find that image in directory
-//7. delete that image
-//8. update that product
+
 
 const updateProudct = async (req, res) => {
     try {
@@ -207,46 +210,7 @@ const updateProudct = async (req, res) => {
 
 }
 
-//pagination
-// const paginationProducts = async (req,res) => {
-//     //result per page 
-//     const pageNo = req.query.page || 1;
 
-//     //result per page 
-//     const resultPerPage = 2;
-//     try{
-//         //find all products, skip, limit
-//         const products =await productModel.find({})
-//         .skip((pageNo - 1 )*resultPerPage)
-//         .limit(resultPerPage)
-
-//         //if page 6 is requested, result 0
-//         if(products.length === 0){
-//             return res.status(400).json({
-//                 'success' : false,
-//                 'message': "No product found"
-                
-//             })
-//         }
-
-//         //response
-//         res.status(201).json({
-//             'success': true,
-//             'message': "product fetched",
-//             'products': products
-//         })
-
-
-//     }catch(error){
-//         console.log(error)
-//         res.status(500).json({
-//             'success' : false,
-//             'message' : "Internal server error"
-//         })
-
-//     }
-
-//}
 // Pagination
 const paginationProducts = async (req, res) => {
     try {
@@ -328,5 +292,6 @@ module.exports = {
     updateProudct,
     paginationProducts,
     getProductCount,
+    getCategories
     
 };
